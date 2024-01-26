@@ -1,0 +1,18 @@
+body {
+    background: #c4bbee;
+    font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
+      helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+   
+  }
+
+  #post_create_btn{
+      position: absolute;
+      top: 120px;
+      right: 40px;
+      width: 200px;
+      height: 50px;
+      border: 3px solid #73AD21;
+  }
+
+
+  
