@@ -18,9 +18,9 @@
     border-radius: 4px;
   }
   
-  /* Style for logo link  */
-  .header a.logo {
-    font-size: 25px;
+  /* Style for logo */
+  .header .logo {
+    color: rgb(242, 231, 231);
     font-weight: bold;
   }
   
@@ -30,11 +30,6 @@
     color: rgb(226, 180, 180);
   }
   
-  /* Style for active/current link*/
-  .header a.active {
-    background-color: dodgerblue;
-    color: white;
-  }
   
   /* Float the link section to the right */
   .header-right {
