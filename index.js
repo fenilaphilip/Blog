@@ -7,8 +7,7 @@ const app = express();
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended:true}));
 
-
-app.get("/",(req,res)=>{
+app.get("/home",(req,res)=>{
     res.render("index.ejs");
 });
 
