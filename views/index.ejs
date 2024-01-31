@@ -13,7 +13,7 @@
     <ul class="list-group list-group-flush">
       <% for( let i = 0; i < allPost.length; i++ ) { %>
         <li class="list-group-item">
-          <%= allPost[i].heading  %>
+          <a <%= `href=/view/${i}`%> > <%= allPost[i].heading %> </a>  
         </li>
       <% } %>
        </ul>
