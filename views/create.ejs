@@ -4,18 +4,34 @@
 
 
 <div class="container my-5">
-  <form class="p-5 text-center bg-body-secondary rounded-3" action="/create" method="post">
+  <form class="p-5 text-center bg-body-secondary rounded-3" action="/blogPost" method="post">
     <div class="input-group">
-      <input type="text" name="heading" class="form-control" placeholder="Enter the caption here!" aria-label="caption">
+      <% if (locals.story === undefined) { %>
+        <input type="text" name="heading" class="form-control" placeholder="Enter the caption here!" aria-label="caption">
+      <% } else {%>
+        <input type="text" name="heading" class="form-control" placeholder="Enter the caption here!" aria-label="caption" value="<%= story.heading %>">
+      <% } %> 
+       
+      
     </div>
     <div class="input-group mt-3" id="content">
-      <textarea name="content" class="form-control" placeholder="Write your thoughts here!" aria-label="With textarea"></textarea>
-    </div>
+      <% if (locals.story === undefined) { %>
+        <textarea name="content" class="form-control" placeholder="Write your thoughts here!" aria-label="With textarea"></textarea>
+      <% } else {%>
+        <textarea name="content" class="form-control" placeholder="Write your thoughts here!" aria-label="With textarea"><%= story.content %></textarea>
+      <% } %> 
+          </div>
     <div class="d-inline-flex gap-2 mb-5 mt-5">
       <button class="d-inline-flex align-items-center btn btn- btn-outline-primary btn-lg px-4 rounded-pill" type="reset" value="Discard">
        Discard
       </button>
-      <button class="d-inline-flex align-items-center btn btn-outline-primary btn-lg px-4 rounded-pill"  type="submit" value="Save">Save</button>
+      <% if (locals.id === undefined) { %>
+        <button class="d-inline-flex align-items-center btn btn-outline-primary btn-lg px-4 rounded-pill"  type="submit" name="option" value="create">Save</button>
+      <% } else {%>
+        <input type="hidden" value="<%= id %>" name="id"/>
+        <button class="d-inline-flex align-items-center btn btn-outline-primary btn-lg px-4 rounded-pill"  type="submit" name="option" value="edit">Save</button>
+      <% } %> 
+      
     </div>
   </form>
 </div>

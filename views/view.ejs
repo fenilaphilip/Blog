@@ -7,14 +7,17 @@
     <hr>
     <p class="lead"><%= story.content %></p>
   </div>
-  <div class="d-inline-flex gap-2 mb-5 mt-5">
-    <button class="d-inline-flex align-items-center btn btn- btn-outline-primary btn-lg px-4 rounded-pill" type="button">
+  <form class="d-inline-flex gap-2 mb-5 mt-5"  method="post" action="/blogPost" >
+    <input type="hidden" name="id" value="<%= id %>"/>
+    <input type="hidden" name="heading" value="<%= story.heading %>"/>
+    <input type="hidden" name="content" value="<%= story.content %>"/>
+    <button class="d-inline-flex align-items-center btn btn- btn-outline-primary btn-lg px-4 rounded-pill" type="submit" value="edit" name="option">
       Edit
     </button>
-    <button class="d-inline-flex align-items-center btn btn-outline-primary btn-lg px-4 rounded-pill" type="button">
+    <button class="d-inline-flex align-items-center btn btn-outline-primary btn-lg px-4 rounded-pill" type="submit" value="delete" name="option">
       Delete
     </button>
-  </div>
+  </form>
 </div>
 
 <%- include('partials/footer.ejs') %>

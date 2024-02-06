@@ -9,12 +9,32 @@ var postList = [];
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.post("/create", (req, res) => {
-   postList.push(req.body);
-    console.log(postList);
-    res.redirect("/home")
-   
-});
+app.post("/blogPost", (req, res) => {
+    console.log("userRequested " +JSON.stringify(req.body) );
+   switch(req.body.option){
+    case "create":
+        postList.push({
+            heading: req.body.heading,
+            content: req.body.content
+        });
+        var id = postList.length-1;
+        res.redirect(`/edit?id=${id}`)
+        break;    
+    case "edit":
+        console.log("Editing id "+req.body.id)
+        var id = req.body.id;
+        postList[id] = {
+            heading: req.body.heading,
+            content: req.body.content
+        };
+        res.redirect(`/edit?id=${id}`);
+        break;
+    case "delete":
+        // postList = postList.slice(index,1);
+        res.redirect("/home");
+        break;
+   }
+ });
 
 
 app.get("/home", (req, res) => {
@@ -26,12 +46,18 @@ app.get("/create", (req, res) => {
     res.render("create.ejs");
 });
 
-app.get("/view/:id", (req, res, next) => {
-    var id = req.params.id;
+app.get("/edit", (req, res) => {
+    var id = req.query.id;
+    console.log("id = "+id);
+    console.log("postList = "+JSON.stringify(postList))
+    console.log("Editing "+ JSON.stringify(postList[id]));
+    res.render("create.ejs",{story:postList[id], id:id});
+});
+
+app.get("/view", (req, res) => {
+    var id = req.query.id;
     console.log('The id: ' + id);
-    console.log("from view : " + JSON.stringify(postList));
-    res.render("view.ejs",{ story: postList[id]});
-    next();
+    res.render("view.ejs",{ story: postList[id], id:id});
 });
 
 app.listen(port, () => {
